@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    {% block title %}<title>Карьер с самосвалами</title>{% endblock %}
+</head>
+<body>
+{% if models %}
+<div class="container">
+    <form action="" method="get">
+        <label for="featured">Модель: </label>
+        <select name="featured">
+            <option value="all">Все</option>
+            {% for model_truck in models %}
+                <option value="{{ model_truck.name }}">{{ model_truck.name }}</option>
+            {% endfor %}
+         </select>
+         <input type="submit" value="Применить" />
+    </form>
+
+
+<table class="table table-hover table-sm" border="1">
+    <thead>
+        <tr>
+            <th scope="col">Бортовой номер</th>
+            <th scope="col">Модель</th>
+            <th scope="col">Максимальная грузоподъёмность</th>
+            <th scope="col">Текущий вес</th>
+            <th scope="col">Перегруз, %</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for truck in trucks %}
+        <tr>
+            <th scope="row"> {{ truck.id }}</th>
+            <th scope="row"> {{ truck.truck_model}}</th>
+            <th scope="row"> {{ truck.max_load_tons }}</th>
+            <th scope="row"> {{ truck.current_load_tons }}</th>
+            <th scope="row"> {{ truck.overload_percents }}</th>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+</div>
+{% else %}
+<p>В базе нет ни одного самосвала</p>
+{% endif %}
+</body>
+</html>
