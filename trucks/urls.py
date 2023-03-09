@@ -1,6 +1,7 @@
 from django.urls import path
 from trucks import views
+from trucks.views import MainView
 
 urlpatterns = [
-    path('trucks', views.trucks_page),
+    path('trucks', MainView.as_view()),
 ]

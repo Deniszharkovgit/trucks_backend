@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     {% block title %}<title>Карьер с самосвалами</title>{% endblock %}
@@ -11,16 +15,20 @@
     <form action="" method="get">
         <label for="featured">Модель: </label>
         <select name="featured">
-            <option value="all">Все</option>
+            <option  value="all">Все</option>
             {% for model_truck in models %}
-                <option value="{{ model_truck.name }}">{{ model_truck.name }}</option>
+                {% if prev_value == model_truck.name %}
+                    <option selected="selected" value="{{ model_truck.name }}">{{ model_truck.name }}</option>
+                {% else %}
+                    <option value="{{ model_truck.name }}">{{ model_truck.name }}</option>
+                {% endif %}
             {% endfor %}
          </select>
          <input type="submit" value="Применить" />
     </form>
 
 
-<table class="table table-hover table-sm" border="1">
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" border="1">
     <thead>
         <tr>
             <th scope="col">Бортовой номер</th>
