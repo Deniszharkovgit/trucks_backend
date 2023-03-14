@@ -6,7 +6,7 @@ class TruckModel(models.Model):
     name = models.CharField(max_length=50, primary_key=True, verbose_name="Название модели самосвала")
     capacity_tons = models.IntegerField(null=False,
                                         verbose_name="Максимальная загрузка самосвала данной модели в тоннах",
-                                        validators=[MinValueValidator(0)])
+                                        validators=[MinValueValidator(0)], default=0)
 
     def __str__(self):
         return self.name
